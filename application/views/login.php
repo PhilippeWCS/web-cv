@@ -1,12 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: pdebridiers
- * Date: 18/01/2018
- * Time: 15:13
- */
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,19 +11,26 @@
 <body>
     <div class="container">
         <div class="offset-4 col-4">
-            <h1>Web cv</h1>
+            <h1>Web CV</h1>
+
+            <?php if(!empty($this->session->flashdata())){ ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $this->session->flashdata('errorLogin'); ?>
+                </div>
+            <?php } ?>
+
             <?php echo form_open('login'); ?>
                 <div class="form-group">
                     <label for="username">Nom utilisateur</label>
-                    <input type="input" class="form-control" id="username" placeholder="test" value=<?php echo set_value('username'); ?>>
+                    <input type="input" class="form-control" name="username" id="username" value="<?php echo set_value('username'); ?>">
                     <?php echo form_error('username'); ?>
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" placeholder="mon mdp">
+                    <input type="password" class="form-control" name="password" id="password">
                     <?php echo form_error('password'); ?>
                 </div>
-                <button type="submit" class="btn btn-outline-primary float-right">Connexion</button>
+                <input type="submit" class="btn btn-outline-primary float-right" value="Connexion">
             </form>
         </div>
     </div>
