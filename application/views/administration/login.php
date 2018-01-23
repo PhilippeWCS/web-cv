@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo site_url('assets/css/style.css'); ?>">
 
     <title>{title}</title>
 </head>
 <body>
     <div class="container">
-        <div class="offset-4 col-4">
-            <h1>Web CV</h1>
+        <div id="login" class="offset-4 col-4">
+            <div class="text-center">
+                <img src="<?php echo site_url('assets/images/logo.png'); ?>" alt="logo hydrate">
+            </div>
+            <hr>
+            <h1 class="text-center">Web CV</h1>
 
             <?php if(!empty($this->session->flashdata())){ ?>
                 <div class="alert alert-danger" role="alert">
@@ -19,7 +24,7 @@
                 </div>
             <?php } ?>
 
-            <?php echo form_open('login'); ?>
+            <?php echo form_open('administration/login'); ?>
                 <div class="form-group">
                     <label for="username">Nom utilisateur</label>
                     <input type="input" class="form-control" name="username" id="username" value="<?php echo set_value('username'); ?>">

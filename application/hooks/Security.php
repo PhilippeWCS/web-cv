@@ -20,8 +20,8 @@ class Security
     public function checkUserLogIn()
     {
 
-        if ($this->CI->uri->segment(1) === 'administration' && empty($this->CI->session->userdata()) && $this->CI->session->userdata('logged_in')){
-            redirect('login');
+        if ($this->CI->uri->segment(1) === 'administration' && $this->CI->uri->segment(2) !== 'login' && $this->CI->session->userdata('logged_in') === null){
+            redirect('administration/login');
         }
     }
 

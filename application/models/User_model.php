@@ -8,13 +8,20 @@
 
 class User_model extends CI_Model
 {
-    public function getUser($username)
+    private $table = 'user';
+
+    public function getUserByUsername($user)
     {
-        $query = $this->db->get_where('user', array(
-            'username' => $username
+        $query = $this->db->get_where($this->table, array(
+            'username' => $user
         ));
 
         return $query->row();
+    }
+
+    public function setUserProfil($user, $data)
+    {
+        return $this->db->update($this->table, $data, array('username' => $user));
     }
 
 }

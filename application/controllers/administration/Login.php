@@ -16,24 +16,24 @@ class Login extends CI_Controller
         );
 
         if ($this->form_validation->run() == FALSE) {
-            $this->parser->parse('login', $data);
+            $this->parser->parse('administration/login', $data);
         } else {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-            $user = $this->User_model->getUser($username);
+            $user     = $this->User_model->getUserByUsername($username);
 
             if (!empty($user) && password_verify($password, $user->password)){
                 $userdata = array(
-                    'username' => $user->username,
+                    'username'  => $user->username,
                     'logged_in' => true
                 );
 
                 $this->session->set_userdata($userdata);
 
-                $this->parser->parse('template', $data);
+                redirect('administration/profil');
             } else {
                 $this->session->set_flashdata('errorLogin', "Vos informations d'identification sont incorrectes");
-                $this->parser->parse('login', $data);
+                $this->parser->parse('administration/login', $data);
             }
         }
     }
